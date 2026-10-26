@@ -1,0 +1,33 @@
+#!/bin/sh
+# USB_BSD / FreeBSD 15.1 / read-only USB mount verification
+# This is a parameterized reference implementation, not independently host-tested.
+set -u
+umask 077
+CONF=/usr/local/etc/cherub-usb-ro.conf
+DEV=/dev/gpt/primary
+MP=/media/CHERUB_DATA
+QUIET=${1:-}
+info() { [ "$QUIET" = "--quiet" ] || printf '%s\n' "$1"; }
+fail() { logger -t cherub-usb-ro -p daemon.err "$1"; printf 'FAIL: %s\n' "$1" >&2; exit 1; }
+[ "$(id -u)" -eq 0 ] || fail "root required"
+[ -f "$CONF" ] && [ ! -L "$CONF" ] || fail "Missing or linked config"
+[ "$(stat -f '%u:%Lp' "$CONF")" = "0:600" ] || fail "Config must be root-owned, mode 600"
+. "$CONF"
+: "${CHERUB_USB_UUID:?Missing local UUID}"
+case "$CHERUB_USB_UUID" in *[!a-fA-F0-9-]*|'') fail "Invalid UUID";; esac
+[ -c "$DEV" ] || { info "NO_DEVICE"; exit 0; }
+IDENT=$(timeout 10 file -sL "$DEV" 2>&1) || fail "Device identification failed"
+case "$IDENT" in *"ext4 filesystem data"*"UUID=$CHERUB_USB_UUID"*) ;; *) fail "Unexpected device";; esac
+ACTUAL=$(mount -t ext2fs | grep -F "$DEV on $MP (ext2fs, " || :)
+if [ -z "$ACTUAL" ]; then
+  mount -t autofs | grep -Fq " on $MP (autofs)" || fail "Autofs map not active"
+  timeout -k 5s 20s ls -A "$MP" >/dev/null 2>&1 || fail "Autofs trigger failed"
+  ACTUAL=$(mount -t ext2fs | grep -F "$DEV on $MP (ext2fs, " || :)
+  [ -n "$ACTUAL" ] || fail "Mount missing"
+  logger -t cherub-usb-ro "CHERUB_DATA: mount triggered"
+fi
+for FLAG in read-only nosuid noexec; do
+  printf '%s\n' "$ACTUAL" | grep -Fq "$FLAG" || fail "Missing $FLAG"
+done
+timeout 20 ls -A "$MP" >/dev/null 2>&1 || fail "Directory read failed"
+info "PASS: CHERUB_DATA RO nosuid noexec"
