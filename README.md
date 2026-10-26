@@ -16,8 +16,8 @@ Autorski projekt archiwizacji i kontrolowanego dostępu do przenośnego dysku US
 
 ## Struktura
 
-- `freebsd/` — skrypt do montowania tylko do odczytu, instalator wymagający odrębnego zatwierdzenia (`--apply`), instrukcja oraz wzory konfiguracji. Wariant publikacyjny z lokalnym plikiem UUID nie był jeszcze testowany na FreeBSD.
-- `ubuntu/` — zachowany prototyp CHERUB USB SYNC v1; **nieinstalowany i niezweryfikowany produkcyjnie**.
+- `freebsd/` — skrypt do montowania tylko do odczytu, instrukcja oraz wzory konfiguracji. Wariant publikacyjny z lokalnym plikiem UUID nie był jeszcze testowany na FreeBSD.
+- `ubuntu/` — opis planowanego prototypu CHERUB USB SYNC v1; kod wykonawczy nie został jeszcze opublikowany i nie jest zweryfikowany produkcyjnie.
 - `verification/` — raporty walidacji i znane ograniczenia.
 - `docs/` — statyczna strona GitHub Pages, przygotowana na fotografie.
 
@@ -37,7 +37,7 @@ Autorski projekt archiwizacji i kontrolowanego dostępu do przenośnego dysku US
 
 ## Bezpieczeństwo
 
-Kod `freebsd/cherub-usb-ro` oparto na implementacji zgłoszonej jako zainstalowana na stanowisku, zastępując przy publikacji wpisany na stałe UUID konfiguracją lokalną. `freebsd/install.sh` jest nowym, nieweryfikowanym jeszcze na docelowym FreeBSD instalatorem. Nie jest uniwersalnym instalatorem. Bazuje na odczycie identyfikacji przez `file` i sprawdzeniu opcji `mount`; zastosowanie na innym urządzeniu wymaga audytu. Publikowane materiały nie zawierają identyfikatora UUID użytego dysku. Nie publikuj prywatnych logów, numerów seryjnych urządzeń ani fotografii bez usunięcia metadanych i danych widocznych na ekranach.
+Kod `freebsd/cherub-usb-ro` oparto na implementacji zgłoszonej jako zainstalowana na stanowisku, zastępując przy publikacji wpisany na stałe UUID konfiguracją lokalną. Skrypt publikacyjny nie jest uniwersalnym instalatorem. Bazuje na odczycie identyfikacji przez `file` i sprawdzeniu opcji `mount`; zastosowanie na innym urządzeniu wymaga audytu. Publikowane materiały nie zawierają identyfikatora UUID użytego dysku. Nie publikuj prywatnych logów, numerów seryjnych urządzeń ani fotografii bez usunięcia metadanych i danych widocznych na ekranach.
 
 Nie używaj `newfs`, `fsck` z naprawą ani montowania RW na podstawie tego projektu. Sprawdzaj realną integralność i odtwarzanie archiwum. Opcja `rsync` bez `--delete` nie stanowi wersjonowania.
 
@@ -47,8 +47,7 @@ Na tym etapie prawa autorskie zastrzeżone. Nie wybrano jeszcze licencji na pono
 
 ## Instalacja i rozwój
 
-FreeBSD: [instrukcja i bezpieczny tryb `--check`](freebsd/INSTALL.md).
-Instalacja `--apply` jest zmianą systemową i wymaga zgody operatora.
-Przykłady Ubuntu znajdują się w `ubuntu/` i NIE są zweryfikowanym produkcyjnie systemem synchronizacji.
+FreeBSD: [procedura audytu i kontrolowanego wdrożenia](freebsd/INSTALL.md). Zmiany na hoście wymagają osobnego zatwierdzenia.
+Plan Ubuntu znajduje się w `ubuntu/` i NIE są zweryfikowanym produkcyjnie systemem synchronizacji.
 
 Strona WWW znajduje się w `docs/index.html`; galeria zdjęć pozostaje pusta do czasu dostarczenia i anonimizacji fotografii.
