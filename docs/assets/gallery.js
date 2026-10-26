@@ -12,10 +12,9 @@
   if (!grid || !status || !modal || !modalImage || !modalTitle || !modalCaption || !close) return;
 
   const slots = [
-    { id: "desktop", number: "01", category: "FREEBSD / GNOME", title: "Pulpit systemu", detail: "Widok sesji GNOME na stanowisku wdrożeniowym" },
-    { id: "disk", number: "02", category: "STORAGE / USB", title: "Wolumin CHERUB_DATA", detail: "Widok nośnika w menedżerze plików" },
-    { id: "validation", number: "03", category: "AUDYT / TERMINAL", title: "Walidacja montowania", detail: "Wynik rzeczywistej kontroli ext2fs i read-only" },
-    { id: "station", number: "04", category: "HARDWARE / LAB", title: "Stacja robocza", detail: "Fotografia lokalnej konfiguracji sprzętowej" }
+    { id: "other", number: "01", category: "FREEBSD / TERMINAL", title: "Środowisko FreeBSD", detail: "Autentyczny widok terminala i motywu ETA_CHERUB" },
+    { id: "desktop", number: "02", category: "FREEBSD / GNOME", title: "Pulpit GNOME", detail: "Rzeczywista sesja graficzna FreeBSD 15.1" },
+    { id: "disk", number: "03", category: "STORAGE / VALIDATION", title: "CHERUB_DATA — montowanie", detail: "Terminal i menedżer plików: kontrola dostępu do nośnika" }
   ];
 
   const validSource = (src) => typeof src === "string" &&
