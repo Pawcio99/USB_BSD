@@ -19,7 +19,8 @@ Autorski projekt archiwizacji i kontrolowanego dostępu do przenośnego dysku US
 - `freebsd/` — skrypt do montowania tylko do odczytu, instrukcja oraz wzory konfiguracji. Wariant publikacyjny z lokalnym plikiem UUID nie był jeszcze testowany na FreeBSD.
 - `ubuntu/` — opis planowanego prototypu CHERUB USB SYNC v1; kod wykonawczy nie został jeszcze opublikowany i nie jest zweryfikowany produkcyjnie.
 - `verification/` — raporty walidacji i znane ograniczenia.
-- `docs/` — statyczna strona GitHub Pages, przygotowana na fotografie.
+- `docs/` — statyczna strona GitHub Pages z responsywną galerią, lokalnym manifestem JSON i oknem podglądu zdjęć.
+- `tools/validate_gallery.py` oraz `.github/workflows/validate-gallery.yml` — automatyczna kontrola galerii i podstawowych metadanych obrazów.
 
 ## Status walidacji
 
@@ -50,4 +51,4 @@ Na tym etapie prawa autorskie zastrzeżone. Nie wybrano jeszcze licencji na pono
 FreeBSD: [procedura audytu i kontrolowanego wdrożenia](freebsd/INSTALL.md). Zmiany na hoście wymagają osobnego zatwierdzenia.
 Plan Ubuntu znajduje się w `ubuntu/` i NIE są zweryfikowanym produkcyjnie systemem synchronizacji.
 
-Strona WWW znajduje się w `docs/index.html`; galeria zdjęć pozostaje pusta do czasu dostarczenia i anonimizacji fotografii.
+Strona WWW znajduje się w [`docs/index.html`](docs/index.html). Galeria jest gotowa technicznie, ale nie zawiera jeszcze fotografii. Zasady pozyskiwania, anonimizacji i publikowania zdjęć: [`docs/GALLERY.md`](docs/GALLERY.md). `docs/data/gallery.json` jest jedynym katalogiem zdjęć odczytywanym przez frontend. Nie należy automatycznie umieszczać zdjęć w repozytorium bez ich przeglądu.
