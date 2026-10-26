@@ -1,0 +1,2 @@
+# Install locally to /usr/local/etc/cherub-usb-ro.conf; root:wheel 0600
+CHERUB_USB_UUID=REPLACE_WITH_LOCAL_EXT4_UUID
