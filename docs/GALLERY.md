@@ -55,19 +55,19 @@ Gdy zdjęcie zostanie zweryfikowane i skompresowane, dodaje się je do `docs/ass
   "schemaVersion": 1,
   "photos": [
     {
-      "id": "01-pulpit",
-      "slot": "desktop",
-      "src": "assets/photos/01-pulpit.webp",
-      "title": "Pulpit FreeBSD 15.1",
-      "alt": "Zrzut ekranu pulpitu GNOME na stacji roboczej FreeBSD",
-      "caption": "Stanowisko testowe CHERUB USB RO; widok sesji graficznej.",
-      "category": "FREEBSD / GNOME"
+      "id": "01-terminal",
+      "slot": "other",
+      "src": "assets/photos/01-terminal.webp",
+      "title": "FreeBSD — środowisko terminalowe",
+      "alt": "Zrzut ekranu terminala FreeBSD",
+      "caption": "Autentyczne środowisko demonstracyjne USB_BSD.",
+      "category": "FREEBSD / TERMINAL"
     }
   ]
 }
 ```
 
-Dozwolone miejsca: `desktop`, `disk`, `validation`, `station` oraz `other`. Początkowo `photos` jest puste i strona pokazuje uczciwe symbole zastępcze, nie fotografie stockowe.
+Docelowo galeria zawiera wyłącznie trzy autentyczne ujęcia dostarczone przez autora: `01-terminal.webp` (`other`), `02-gnome.webp` (`desktop`) oraz `03-montowanie.webp` (`disk`). Nie dodajemy grafiki koncepcyjnej, zdjęć stockowych ani czwartego ujęcia stanowiska. Manifest pozostaje pusty do chwili przesłania wszystkich trzech plików graficznych; strona wyświetla wtedy trzy neutralne symbole zastępcze.
 
 ## Walidacja i publikacja
 
