@@ -1,0 +1,1 @@
+/media/CHERUB_DATA -fstype=ext2fs,ro,nosuid,noexec :/dev/gpt/primary
