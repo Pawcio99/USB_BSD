@@ -1,0 +1,23 @@
+name: Verify USB_BSD website and photo gallery
+on:
+  push:
+    paths:
+      - "docs/**"
+      - "tools/validate_gallery.py"
+      - ".github/workflows/validate-gallery.yml"
+  pull_request:
+    paths:
+      - "docs/**"
+      - "tools/validate_gallery.py"
+      - ".github/workflows/validate-gallery.yml"
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check media manifest, paths and metadata
+        run: python3 tools/validate_gallery.py
+      - name: Check gallery JavaScript syntax
+        run: node --check docs/assets/gallery.js
